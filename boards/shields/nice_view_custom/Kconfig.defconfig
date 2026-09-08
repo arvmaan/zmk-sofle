@@ -35,6 +35,15 @@ config NICE_VIEW_CUSTOM_WIDGET_STATUS
     select LV_FONT_MONTSERRAT_16
     select LV_USE_IMG
     select LV_USE_CANVAS
+    select LV_USE_ANIMIMG
+
+config NICE_VIEW_CUSTOM_ANIMATION_MS
+    int "Milliseconds per animation frame on the peripheral screen"
+    default 100
+    help
+      Lower is smoother but costs battery on the right half, which must wake
+      and push a ~1.4 KB SPI frame each tick. 100 = 10 fps (source GIF rate).
+      Raise toward 250-500 if battery life matters more than smoothness.
 
 config NICE_VIEW_CUSTOM_WIDGET_INVERTED
     bool "Invert custom status widget colors"
