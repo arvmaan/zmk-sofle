@@ -6,6 +6,7 @@ if(CONFIG_ZMK_DISPLAY AND CONFIG_NICE_VIEW_CUSTOM_WIDGET_STATUS)
 
   if(NOT CONFIG_ZMK_SPLIT OR CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
     zephyr_library_sources(widgets/status.c)
+    zephyr_library_sources(widgets/left_art.c)
   else()
     zephyr_library_sources(widgets/art.c)
     zephyr_library_sources(widgets/peripheral_status.c)
