@@ -39,7 +39,7 @@ config NICE_VIEW_CUSTOM_WIDGET_STATUS
 
 config NICE_VIEW_CUSTOM_ANIMATION_MS
     int "Milliseconds per animation frame on the peripheral screen"
-    default 100
+    default 125
     help
       Lower is smoother but costs battery on the right half, which must wake
       and push a ~1.4 KB SPI frame each tick. 100 = 10 fps (source GIF rate).
