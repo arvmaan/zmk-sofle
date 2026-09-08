@@ -5,6 +5,7 @@ nice!view screens on both halves, per-key backlight + WS2812 underglow, nice!nan
 
 See [`docs/USAGE.md`](docs/USAGE.md) for how to actually operate the thing — LEDs, screen icons,
 Bluetooth profiles, soft-off, troubleshooting.
+See [`docs/SCREEN.md`](docs/SCREEN.md) for the nice!view art pipeline.
 
 Upstream vendor config: [a741725193/zmk-sofle](https://github.com/a741725193/zmk-sofle) — kept as the
 `upstream` git remote. Vendor docs are preserved in [`docs/`](docs/).
