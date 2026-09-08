@@ -47,6 +47,14 @@
             ccw-binding = <&kp C_VOL_DN>;
         };
 
+        td_caps: td_caps {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            label = "TD_CAPS";
+            tapping-term-ms = <220>;
+            bindings = <&caps_word>, <&kp CAPS>;
+        };
+
         rsr_trans: rsr_trans {
             compatible = "zmk,behavior-runtime-sensor-rotate";
             #sensor-binding-cells = <0>;
@@ -56,6 +64,73 @@
 
     combos {
         compatible = "zmk,combos";
+
+
+        // --- developer combos, layer 0 only ---
+        // require-prior-idle-ms stops these firing mid-burst while typing fast.
+        combo_shot_region {
+            bindings = <&kp LG(LS(N4))>;
+            key-positions = <34 35 36>;      // J K L
+            timeout-ms = <50>;
+            require-prior-idle-ms = <100>;
+            layers = <0>;
+        };
+
+        combo_shot_full {
+            bindings = <&kp LG(LS(N3))>;
+            key-positions = <47 48 49>;      // M , .
+            timeout-ms = <50>;
+            require-prior-idle-ms = <100>;
+            layers = <0>;
+        };
+
+        combo_shot_ui {
+            bindings = <&kp LG(LS(N5))>;
+            key-positions = <21 22 23>;      // U I O
+            timeout-ms = <50>;
+            require-prior-idle-ms = <100>;
+            layers = <0>;
+        };
+
+        combo_shot_clip {
+            bindings = <&kp LG(LC(LS(N4)))>;
+            key-positions = <33 34 35>;      // H J K  (region -> clipboard)
+            timeout-ms = <50>;
+            require-prior-idle-ms = <100>;
+            layers = <0>;
+        };
+
+        combo_cmd_palette {
+            bindings = <&kp LG(LS(P))>;
+            key-positions = <28 29 30>;      // S D F
+            timeout-ms = <50>;
+            require-prior-idle-ms = <100>;
+            layers = <0>;
+        };
+
+        combo_quick_open {
+            bindings = <&kp LG(P)>;
+            key-positions = <15 16 17>;      // W E R
+            timeout-ms = <50>;
+            require-prior-idle-ms = <100>;
+            layers = <0>;
+        };
+
+        combo_comment {
+            bindings = <&kp LG(SLASH)>;
+            key-positions = <41 42 43>;      // X C V
+            timeout-ms = <50>;
+            require-prior-idle-ms = <100>;
+            layers = <0>;
+        };
+
+        // --- system layer: both top corners together, deliberately unreachable by accident ---
+        combo_sys_mode {
+            bindings = <&tog 4>;
+            key-positions = <0 12>;          // ESC + BACKSPACE
+            timeout-ms = <60>;
+            layers = <0 4>;                  // usable to enter AND to leave
+        };
 
         softoff {
             bindings = <&soft_off>;
@@ -85,11 +160,11 @@
 
         layer0 {
             bindings = <
-&kp ESC     &kp N1  &kp N2            &kp N3        &kp N4    &kp N5       &kp UP_ARROW     &kp N6  &kp N7     &kp N8     &kp N9           &kp N0      &kp BACKSPACE
-&kp TAB     &kp Q   &kp W             &kp E         &kp R     &kp T        &kp DOWN_ARROW   &kp Y   &kp U      &kp I      &kp O            &kp P       &kp BSLH
-&kp CAPS    &kp A   &kp S             &kp D         &kp F     &kp G        &kp LEFT_ARROW   &kp H   &kp J      &kp K      &kp L            &kp SEMI    &kp APOS
-&kp LSHFT   &kp Z   &kp X             &kp C         &kp V     &kp B        &kp RIGHT_ARROW  &kp N   &kp M      &kp COMMA  &kp DOT          &kp FSLH    &kp ENTER
-&kp C_MUTE  &tog 1  &kp LEFT_CONTROL  &kp LEFT_ALT  &kp LGUI  &kp SPACE    &kp ENTER        &mo 3   &kp ENTER  &mo 2      &kp RIGHT_SHIFT  &kp DELETE
+&kp ESC     &kp N1  &kp N2            &kp N3        &kp N4    &kp N5       &none  &kp N6  &kp N7     &kp N8     &kp N9           &kp N0      &kp BACKSPACE
+&kp TAB     &kp Q   &kp W             &kp E         &kp R     &kp T        &none  &kp Y   &kp U      &kp I      &kp O            &kp P       &kp BSLH
+&td_caps    &kp A   &kp S             &kp D         &kp F     &kp G        &none  &kp H   &kp J      &kp K      &kp L            &kp SEMI    &kp APOS
+&kp LSHFT   &kp Z   &kp X             &kp C         &kp V     &kp B        &none  &kp N   &kp M      &kp COMMA  &kp DOT          &kp FSLH    &kp ENTER
+&kp C_MUTE  &tog 1  &kp LEFT_CONTROL  &kp LEFT_ALT  &kp LGUI  &kp SPACE    &none  &mo 3   &kp ENTER  &mo 2      &kp RIGHT_SHIFT  &kp DELETE
             >;
 
             sensor-bindings = <&rsr_vol &rsr_trans>;
@@ -98,11 +173,11 @@
 
         layer_1 {
             bindings = <
-&kp GRAVE   &kp F1           &kp F2          &kp F3           &kp F4           &kp F5             &mmv MOVE_UP     &kp F6           &kp F7           &kp F8      &kp F9     &kp F10           &trans
-&trans      &kp GRAVE        &mkp LCLK       &mkp MCLK        &mkp RCLK        &mkp MB4           &mmv MOVE_DOWN   &kp PG_UP        &kp END          &kp UP      &kp HOME   &kp MINUS         &kp EQUAL
-&trans      &kp TILDE        &trans          &trans           &trans           &mkp MB5           &mmv MOVE_LEFT   &kp PG_DN        &kp LEFT         &kp DOWN    &kp RIGHT  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
-&trans      &rgb_ug RGB_OFF  &rgb_ug RGB_ON  &rgb_ug RGB_EFF  &rgb_ug RGB_EFR  &rgb_ug RGB_SPI    &mmv MOVE_RIGHT  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &kp INSERT  &kp F11    &kp F12           &trans
-&kp C_MUTE  &trans           &trans          &trans           &trans           &trans             &mkp LCLK        &trans           &trans           &trans      &trans     &trans
+&kp GRAVE   &kp F1           &kp F2          &kp F3           &kp F4           &kp F5             &none  &kp F6           &kp F7           &kp F8      &kp F9     &kp F10           &trans
+&trans      &kp GRAVE        &mkp LCLK       &mkp MCLK        &mkp RCLK        &mkp MB4           &none  &kp PG_UP        &kp END          &kp UP      &kp HOME   &kp MINUS         &kp EQUAL
+&trans      &kp TILDE        &trans          &trans           &trans           &mkp MB5           &none  &kp PG_DN        &kp LEFT         &kp DOWN    &kp RIGHT  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
+&trans      &rgb_ug RGB_OFF  &rgb_ug RGB_ON  &rgb_ug RGB_EFF  &rgb_ug RGB_EFR  &rgb_ug RGB_SPI    &none  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &kp INSERT  &kp F11    &kp F12           &trans
+&kp C_MUTE  &trans           &trans          &trans           &trans           &trans             &none  &trans           &trans           &trans      &trans     &trans
             >;
 
             sensor-bindings = <&rsr_vol &rsr_trans>;
@@ -111,11 +186,11 @@
 
         layer_2 {
             bindings = <
-&kp TILDE  &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &mmv MOVE_UP     &kp F6  &kp F7  &kp F8      &kp F9     &kp F10      &trans
-&trans     &bt BT_CLR    &bt BT_CLR_ALL  &trans        &trans        &trans          &mmv MOVE_DOWN   &trans  &trans  &kp F11     &kp F12    &kp UNDER    &kp PLUS
-&trans     &out OUT_USB  &out OUT_BLE    &trans        &trans        &trans          &mmv MOVE_LEFT   &trans  &trans  &trans      &trans     &kp LBRC     &kp RBRC
-&trans     &sys_reset    &trans          &bootloader   &trans        &trans          &mmv MOVE_RIGHT  &trans  &trans  &sys_reset  &soft_off  &bootloader  &trans
-&trans     &trans        &trans          &trans        &trans        &trans          &mkp LCLK        &trans  &trans  &trans      &trans     &trans
+&kp TILDE  &trans  &trans  &trans  &trans  &trans    &none  &kp F6  &kp F7  &kp F8   &kp F9   &kp F10    &trans
+&trans     &trans  &trans  &trans  &trans  &trans    &none  &trans  &trans  &kp F11  &kp F12  &kp UNDER  &kp PLUS
+&trans     &trans  &trans  &trans  &trans  &trans    &none  &trans  &trans  &trans   &trans   &kp LBRC   &kp RBRC
+&trans     &trans  &trans  &trans  &trans  &trans    &none  &trans  &trans  &trans   &trans   &trans     &trans
+&trans     &trans  &trans  &trans  &trans  &trans    &none  &trans  &trans  &trans   &trans   &trans
             >;
 
             display-name = "LAYER2";
@@ -124,11 +199,11 @@
 
         layer_3 {
             bindings = <
-&trans  &kp F1  &kp F2  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &kp F1  &kp F2  &trans  &trans  &trans    &none  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &none  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &none  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &none  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &none  &trans  &trans  &trans  &trans  &trans
             >;
 
             display-name = "LAYER3";
@@ -137,11 +212,11 @@
 
         layer_4 {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &none  &trans  &trans  &trans  &trans     &trans  &trans
+&trans  &bt BT_CLR    &bt BT_CLR_ALL  &trans        &trans        &trans          &none  &trans  &trans  &trans  &trans     &trans  &trans
+&trans  &out OUT_USB  &out OUT_BLE    &trans        &trans        &trans          &none  &trans  &trans  &trans  &trans     &trans  &trans
+&trans  &sys_reset    &trans          &bootloader   &trans        &trans          &none  &trans  &trans  &trans  &soft_off  &trans  &trans
+&trans  &trans        &trans          &trans        &trans        &trans          &none  &trans  &trans  &trans  &trans     &trans
             >;
 
             display-name = "LAYER4";
