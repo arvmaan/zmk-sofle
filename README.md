@@ -3,6 +3,9 @@
 ZMK config for an **Eyelash Sofle** (wireless split, 5×6+5 per half, EC11 knob on the left,
 nice!view screens on both halves, per-key backlight + WS2812 underglow, nice!nano v2 / nRF52840).
 
+See [`docs/USAGE.md`](docs/USAGE.md) for how to actually operate the thing — LEDs, screen icons,
+Bluetooth profiles, soft-off, troubleshooting.
+
 Upstream vendor config: [a741725193/zmk-sofle](https://github.com/a741725193/zmk-sofle) — kept as the
 `upstream` git remote. Vendor docs are preserved in [`docs/`](docs/).
 
