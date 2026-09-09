@@ -1,6 +1,6 @@
 layout: {zmk_keyboard: eyelash_sofle}
 layers:
-  LAYER0:
+  REG:
   - $$mdi:keyboard-esc$$
   - {t: '1', s: '!'}
   - {t: '2', s: '@'}
@@ -61,11 +61,11 @@ layers:
   - $$mdi:keyboard-space$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - LAYER1
+  - CODE
   - $$mdi:pan-up$$
   - $$mdi:pan-down$$
   - $$mdi:backspace-reverse-outline$$
-  LAYER1:
+  CODE:
   - {t: '`', s: '~'}
   - F1
   - F2
@@ -393,27 +393,27 @@ layers:
 combos:
 - p: [34, 35, 36]
   k: Gui+Sft+4
-  l: [LAYER0]
+  l: [REG]
 - p: [47, 48, 49]
   k: Gui+Sft+3
-  l: [LAYER0]
+  l: [REG]
 - p: [21, 22, 23]
   k: Gui+Sft+5
-  l: [LAYER0]
+  l: [REG]
 - p: [33, 34, 35]
   k: Gui+Ctl+Sft+4
-  l: [LAYER0]
+  l: [REG]
 - p: [28, 29, 30]
   k: Gui+Sft+P
-  l: [LAYER0]
+  l: [REG]
 - p: [15, 16, 17]
   k: Gui+P
-  l: [LAYER0]
+  l: [REG]
 - p: [41, 42, 43]
   k: Gui+/
-  l: [LAYER0]
+  l: [REG]
 - p: [0, 12]
   k: {t: LAYER4, h: toggle}
-  l: [LAYER0, LAYER4]
+  l: [REG, LAYER4]
 - p: [14, 28, 40]
   k: '&soft_off'
