@@ -65,9 +65,9 @@
     combos {
         compatible = "zmk,combos";
 
-
         // --- developer combos, layer 0 only ---
         // require-prior-idle-ms stops these firing mid-burst while typing fast.
+
         combo_shot_region {
             bindings = <&kp LG(LS(N4))>;
             key-positions = <34 35 36>;      // J K L
@@ -125,6 +125,7 @@
         };
 
         // --- system layer: both top corners together, deliberately unreachable by accident ---
+
         combo_sys_mode {
             bindings = <&tog 4>;
             key-positions = <0 12>;          // ESC + BACKSPACE
@@ -158,20 +159,20 @@
     keymap {
         compatible = "zmk,keymap";
 
-        layer0 {
+        reg {
             bindings = <
-&kp ESC     &kp N1  &kp N2            &kp N3        &kp N4    &kp N5       &none  &kp N6  &kp N7     &kp N8     &kp N9           &kp N0      &kp BACKSPACE
-&kp TAB     &kp Q   &kp W             &kp E         &kp R     &kp T        &none  &kp Y   &kp U      &kp I      &kp O            &kp P       &kp BSLH
-&td_caps    &kp A   &kp S             &kp D         &kp F     &kp G        &none  &kp H   &kp J      &kp K      &kp L            &kp SEMI    &kp APOS
-&kp LSHFT   &kp Z   &kp X             &kp C         &kp V     &kp B        &none  &kp N   &kp M      &kp COMMA  &kp DOT          &kp FSLH    &kp ENTER
-&kp C_MUTE  &tog 1  &kp LEFT_CONTROL  &kp LEFT_ALT  &kp LGUI  &kp SPACE    &none  &mo 3   &kp ENTER  &mo 2      &kp RIGHT_SHIFT  &kp DELETE
+&kp ESC     &kp N1  &kp N2            &kp N3        &kp N4    &kp N5       &none  &kp N6     &kp N7  &kp N8     &kp N9   &kp N0      &kp BACKSPACE
+&kp TAB     &kp Q   &kp W             &kp E         &kp R     &kp T        &none  &kp Y      &kp U   &kp I      &kp O    &kp P       &kp BSLH
+&td_caps    &kp A   &kp S             &kp D         &kp F     &kp G        &none  &kp H      &kp J   &kp K      &kp L    &kp SEMI    &kp APOS
+&kp LSHFT   &kp Z   &kp X             &kp C         &kp V     &kp B        &none  &kp N      &kp M   &kp COMMA  &kp DOT  &kp FSLH    &kp RIGHT_SHIFT
+&kp C_MUTE  &tog 2  &kp LEFT_CONTROL  &kp LEFT_ALT  &kp LGUI  &kp SPACE    &none  &kp ENTER  &mo 1   &trans     &trans   &kp DELETE
             >;
 
             sensor-bindings = <&rsr_vol &rsr_trans>;
             display-name = "LAYER0";
         };
 
-        layer_1 {
+        code {
             bindings = <
 &kp GRAVE   &kp F1           &kp F2          &kp F3           &kp F4           &kp F5             &none  &kp F6           &kp F7           &kp F8      &kp F9     &kp F10           &trans
 &trans      &kp GRAVE        &mkp LCLK       &mkp MCLK        &mkp RCLK        &mkp MB4           &none  &kp PG_UP        &kp END          &kp UP      &kp HOME   &kp MINUS         &kp EQUAL
@@ -221,6 +222,16 @@
 
             display-name = "LAYER4";
             sensor-bindings = <&rsr_vol &rsr_trans>;
+        };
+
+        layer_5 {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+            >;
         };
     };
 };
