@@ -169,7 +169,7 @@
             >;
 
             sensor-bindings = <&rsr_vol &rsr_trans>;
-            display-name = "LAYER0";
+            display-name = "REG";
         };
 
         layer_1 {
@@ -182,7 +182,7 @@
             >;
 
             sensor-bindings = <&rsr_vol &rsr_trans>;
-            display-name = "LAYER1";
+            display-name = "CODE";
         };
 
         layer_2 {
